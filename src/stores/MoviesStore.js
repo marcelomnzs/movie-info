@@ -15,10 +15,27 @@ export const useMovieStore = defineStore('movieStore', {
     async getGOATMovies() {
       let res = await axios.get('https://tcq8l8fps4.execute-api.us-east-1.amazonaws.com/prod/goat', {
         params: {
-          api_key: '5d766102b31f9e0085a2facacbf54cf0',
+          api_key: 'f69f570e1e7670ab862b33f9112996f5',
           language: 'pt-BR'
         }
       })
+      let data = res
+      console.log(data)
+      this.movies = data.data.results
+
+      if(res.error) {
+        console.log(res.error)
+      }
+    },
+
+    async getTopTrendingsMovies() {
+      let res = await axios.get('https://tcq8l8fps4.execute-api.us-east-1.amazonaws.com/prod/toptrendings', {
+        params: {
+          api_key: 'f69f570e1e7670ab862b33f9112996f5',
+          language: 'pt-BR'
+        }
+      })
+
       let data = res
       console.log(data)
       this.movies = data.data.results
