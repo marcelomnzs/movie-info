@@ -1,11 +1,12 @@
 <template>
-    <div>
-        This is the Top trendings Page
-        <div class="grid grid-cols-4 gap-5">
+    <div class="flex justify-center mt-4">
+        <h1 class="text-2xl font-black uppercase tracking-wide">Top Trendings</h1>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4 col-auto px-9 py-3">
         <div v-for="movie in movieStore.movies" :key="movie.id">
             <MovieCard :movie="movie"/>
         </div>
-    </div>
     </div>
 </template>
 
