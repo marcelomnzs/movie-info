@@ -1,40 +1,40 @@
 <template>
-    <form @submit.prevent="handleSubmit">
-        <input
-        type="text"
-        placeholder="I need to..."
-        v-model="newMovie"
-        >
-
-        <button class="bg-blue-600 p-2 rounded text-white">Adicionar Filme</button>
+    <form @submit.prevent="handleSubmit" class="flex appearance-none select-none">
+        <input type="text" v-model="movie" placeholder="Eu quero assistir..." class="border-b border-black">
+        <select name="search-options" v-model="searchOption">
+            <option value="movie" selected>Filme</option>
+            <option value="tv">Série</option>
+            <option value="actor">Ator</option>
+            <option value="director">Diretor</option>
+        </select>
+        <button class="bg-blue-600 px-5 py-1 rounded-lg">Pesquisar filme</button>
     </form>
 </template>
 
 <script>
-    import { useToWatchStore } from '../stores/ToWatchStore';
-    import { ref } from 'vue'
-    export default {
-        name: 'ToWatchForm',
+import { ref } from 'vue'
+import { useToWatchStore } from '../stores/ToWatchStore';
+import { useMovieStore } from '../stores/MoviesStore';
 
-        setup() {
-            const toWatchStore = useToWatchStore()
-            const newMovie = ref('')
+export default {
+    name: 'ToWatchForm',
 
-            const handleSubmit = () => {
-                if(newMovie.value.length > 0){
-                    // toWatchStore.addMovieToWatchList({
-                    //     title: newMovie.value,
-                    //     id: Math.floor(Math.random() * 1000)
-                    // })
-                    toWatchStore.addMovieToWatchList({
-                        title: newMovie.value,
-                        id: Math.floor(Math.random() * 10000)
-                    })
+    setup() {
+        // eslint-disable-next-line no-unused-vars
+        const toWatchStore = useToWatchStore();
+        const movieStore = useMovieStore();
+        const movie = ref('')
+        const searchOption = ref('movie')
+        const handleSubmit = () => {
+            // Verifies if the input is empty
+            if (movie.value.length > 0) {
+                console.log(searchOption)
 
-                    newMovie.value = ''
-                }
+                movieStore.search(movie.value, searchOption.value);
+                movie.value = '';
             }
-            return { handleSubmit, newMovie }
-        }
-    }
+        };
+        return { handleSubmit, movie, searchOption };
+    },
+}
 </script>

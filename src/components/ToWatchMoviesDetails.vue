@@ -1,8 +1,9 @@
 <template>
-    <div class="flex justify-center">
-        <p>{{ movie.title }} | {{ movie.id }}</p>
-        <div class="flex">
-            <p>favoritar</p>
+    <div class="flex justify-around border p-5">
+        <p>{{ item.title }}</p>
+        <p>id:{{ item.id }}</p>
+        <div class="flex gap-3 ml-3">
+            <p>Assistir depois</p>
             <p>deletar</p>
         </div>
     </div>
@@ -13,7 +14,7 @@
 
     export default {
         name: 'ToWatchMoviesDetails',
-        props: ['movie'],
+        props: ['item'],
 
         setup() {
             const toWatchStore = useMovieStore()
