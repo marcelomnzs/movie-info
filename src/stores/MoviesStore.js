@@ -25,6 +25,7 @@ export const useMovieStore = defineStore('movieStore', {
 			})
 
 			const rawData = res.data.results
+
 			// Tratamento dos dados de resposta (verifica se o item achado é de fato um filme)
 			switch (option) {
 				case 'movie': {

@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="handleSubmit" class="flex appearance-none select-none">
-        <input type="text" v-model="movie" placeholder="Eu quero assistir..." class="border-b border-black">
+        <input type="text" v-model="item" placeholder="Eu quero assistir..." class="border-b border-black">
         <select name="search-options" v-model="searchOption">
             <option value="movie" selected>Filme</option>
             <option value="tv">Série</option>
@@ -13,28 +13,23 @@
 
 <script>
 import { ref } from 'vue'
-import { useToWatchStore } from '../stores/ToWatchStore';
 import { useMovieStore } from '../stores/MoviesStore';
 
 export default {
     name: 'ToWatchForm',
 
     setup() {
-        // eslint-disable-next-line no-unused-vars
-        const toWatchStore = useToWatchStore();
         const movieStore = useMovieStore();
-        const movie = ref('')
+        const item = ref('')
         const searchOption = ref('movie')
         const handleSubmit = () => {
             // Verifies if the input is empty
-            if (movie.value.length > 0) {
-                console.log(searchOption)
-
-                movieStore.search(movie.value, searchOption.value);
-                movie.value = '';
+            if (item.value.length > 0) {
+                movieStore.search(item.value, searchOption.value);
+                item.value = '';
             }
         };
-        return { handleSubmit, movie, searchOption };
+        return { handleSubmit, item, searchOption };
     },
 }
 </script>
