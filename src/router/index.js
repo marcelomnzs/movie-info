@@ -29,7 +29,13 @@ const router = createRouter({
       path: '/topTrendings',
       name: 'TopTrendings',
       component: () => import('../views/TopTrendings.vue')
-    }
+    },
+
+    {
+      path: '/search/:item',
+      name: 'search',
+      component: () => import('../views/Search.vue')
+    },
   ]
 })
 

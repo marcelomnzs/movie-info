@@ -10,8 +10,8 @@ export const useToWatchStore = defineStore('toWatchStore', {
     },
 
     actions: {
-        addMovieToWatchList(movie) {
+        addToWatchList(movie) {
             this.toWatchList.push(movie)
-        }
+        },
     }
 })
