@@ -15,6 +15,9 @@
             <p v-show="showMore" class="text-gray-500 text-sm mt-3">{{ movie.overview }}</p>
             <h4 class="flex flex-col text-gray-500 text-sm">Data de lançamento: {{ movie.release_date }}</h4>
             <button @click="changeShowMore" class="text-sm">Mostrar mais</button>
+            <div class="bg-green-400 px-2 py-1 rounded-full mt-2 text-white">
+                <button @click="addToWatchLater(this.movie)">Assistir mais tarde</button>
+            </div>
         </div>
 
         <!-- If Tv show -->
@@ -57,6 +60,7 @@
 
 <script>
 import { useMovieStore } from '../stores/MoviesStore';
+import { useToWatchStore } from '../stores/ToWatchStore';
 import { ref } from 'vue'
 
 export default {
@@ -69,12 +73,17 @@ export default {
     setup() {
         const showMore = ref(false)
         const movieStore = useMovieStore()
-        return { movieStore, showMore }
+        const toWatchStore = useToWatchStore()
+        return { movieStore, toWatchStore, showMore }
     },
 
     methods: {
         changeShowMore() {
             this.showMore ? this.showMore = false : this.showMore = true;
+        },
+
+        addToWatchLater(movie) {
+            this.toWatchStore.addToWatchList(movie)
         }
     }
 
