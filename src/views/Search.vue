@@ -1,7 +1,4 @@
 <template>
-    <!-- <div class="flex items-center justify-center">
-        {{ movieStore.searchResult }}
-    </div> -->
     <div class="grid grid-cols-4 px-12 py-8 gap-7">
         <div v-for="item in movieStore.searchResult" :key="item.id">
             <MovieCard :movie="item" :mediaType="mediaType"/>
