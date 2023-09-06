@@ -15,6 +15,9 @@
             <p v-show="showMore" class="text-gray-500 text-sm mt-3">{{ movie.overview }}</p>
             <h4 class="flex flex-col text-gray-500 text-sm">Data de lançamento: {{ movie.release_date }}</h4>
             <button @click="changeShowMore" class="text-sm">Mostrar mais</button>
+            <div class="bg-green-400 px-2 py-1 rounded-full mt-2 text-white">
+                <button @click="addToWatchLater(this.movie)">Assistir mais tarde</button>
+            </div>
         </div>
 
         <!-- If Tv show -->
@@ -35,10 +38,7 @@
         <div class="p-6 flex flex-col items-center" v-if="mediaType === 'actor'">
             <p class="font-semibold text-lg truncate ">{{ movie.name }}</p>
             <div class="flex items-center text-sm">
-                <h3 class="pr-1 font-semibold text-base text-teal-700">{{ movie.vote_average }}</h3>
-                &bullet;
-                <span class="pl-1 tracking-wide font-bold uppercase text-xs text-gray-600">({{ movie.vote_count }}
-                    reviews)</span>
+                <h3 class="pr-1 font-semibold text-base text-teal-700">Popularidade: {{ movie.popularity }}</h3>
             </div>
             <p v-show="showMore" class="text-gray-500 text-sm mt-3">{{ movie.overview }}</p>
             <h4 class="flex flex-col text-gray-500 text-sm">Data de lançamento: {{ movie.first_air_date }}</h4>
@@ -49,7 +49,7 @@
         <div class="p-6 flex flex-col items-center" v-if="mediaType === 'director'">
             <p class="font-semibold text-lg truncate ">{{ movie.name }}</p>
             <div class="flex items-center text-sm">
-                <h3 class="pr-1 font-semibold text-base text-teal-700">Popularity: {{ movie.popularity }}</h3>
+                <h3 class="pr-1 font-semibold text-base text-teal-700">Popularidade: {{ movie.popularity }}</h3>
             </div>
         </div>
 
@@ -60,6 +60,7 @@
 
 <script>
 import { useMovieStore } from '../stores/MoviesStore';
+import { useToWatchStore } from '../stores/ToWatchStore';
 import { ref } from 'vue'
 
 export default {
@@ -72,12 +73,17 @@ export default {
     setup() {
         const showMore = ref(false)
         const movieStore = useMovieStore()
-        return { movieStore, showMore }
+        const toWatchStore = useToWatchStore()
+        return { movieStore, toWatchStore, showMore }
     },
 
     methods: {
         changeShowMore() {
             this.showMore ? this.showMore = false : this.showMore = true;
+        },
+
+        addToWatchLater(movie) {
+            this.toWatchStore.addToWatchList(movie)
         }
     }
 

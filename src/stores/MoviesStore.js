@@ -23,9 +23,9 @@ export const useMovieStore = defineStore('movieStore', {
 			// TODO: Alterar API e fazer rota para pequisa de Filmes no API Gateway 
 
 			// Requisição da API de filmes 
-			const res = await axios.get(`https://api.themoviedb.org/3/search/multi?query=${keyword}&language=pt-BR`, {
+			const res = await axios.get(`https://api.themoviedb.org/3/search/multi?query=${keyword}`, {
 				params: {
-					api_key: '8ec2d5978727fb5f51af131135f7a3ce',
+					api_key: `${import.meta.env.VITE_APP_API_KEY}`,
 					language: 'pt-BR'
 				}
 			})
@@ -68,7 +68,7 @@ export const useMovieStore = defineStore('movieStore', {
 		async getGOATMovies() {
 			let res = await axios.get('https://tcq8l8fps4.execute-api.us-east-1.amazonaws.com/prod/goat', {
 				params: {
-					api_key: '8ec2d5978727fb5f51af131135f7a3ce',
+					api_key: `${import.meta.env.VITE_APP_API_KEY}`,
 					language: 'pt-BR'
 				}
 			})
@@ -83,7 +83,7 @@ export const useMovieStore = defineStore('movieStore', {
 		async getTopTrendingsMovies() {
 			let res = await axios.get('https://tcq8l8fps4.execute-api.us-east-1.amazonaws.com/prod/toptrendings', {
 				params: {
-					api_key: '8ec2d5978727fb5f51af131135f7a3ce',
+					api_key: `${import.meta.env.VITE_APP_API_KEY}`,
 					language: 'pt-BR'
 				}
 			})
