@@ -5,6 +5,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name:'TopTrendings',
+      component: () => import('../views/TopTrendings.vue')
     },
 
     {
