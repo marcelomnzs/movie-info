@@ -19,8 +19,8 @@
         <div class="flex items-center space-x-8 ">
             <router-link class="px-1 hover-nav-link" to="/goat">G.O.A.T Movies</router-link>
             <router-link class="px-1 hover-nav-link" to="/topTrendings">Top trendings</router-link>
-            <router-link class="px-1 hover-nav-link" to="/login">Login</router-link>
-            <router-link class="signUpBtn" to="/signUp">Sign-up</router-link>
+            <a class="px-1 hover-nav-link" href="https://movieinfo.auth.us-east-1.amazoncognito.com/login?client_id=2kg2k11f9jcm8ubh6l1e58t8pu&response_type=code&scope=email+openid&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2FtopTrendings">Login</a>
+            <a class="px-1 hover-nav-link" href="https://movieinfo.auth.us-east-1.amazoncognito.com/signup?client_id=2kg2k11f9jcm8ubh6l1e58t8pu&response_type=code&scope=email+openid&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2FtopTrendings">Sign-Up</a>
         </div>
     </div>
 </template>

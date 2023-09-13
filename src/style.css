@@ -12,4 +12,8 @@
     .signUpBtn{
         @apply py-3 px-2 bg-blue-600 rounded text-white hover:text-blue-100 hover:bg-blue-400 transition duration-300
     }
+
+    .loginBtn{
+        @apply py-3 px-16 bg-blue-600 rounded text-white hover:text-blue-100 hover:bg-blue-400 transition duration-300
+    }
 }
