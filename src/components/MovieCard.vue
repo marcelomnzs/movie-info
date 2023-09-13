@@ -62,6 +62,7 @@
 import { useMovieStore } from '../stores/MoviesStore';
 import { useToWatchStore } from '../stores/ToWatchStore';
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
     name: 'MovieCard',
@@ -74,7 +75,8 @@ export default {
         const showMore = ref(false)
         const movieStore = useMovieStore()
         const toWatchStore = useToWatchStore()
-        return { movieStore, toWatchStore, showMore }
+        const router = useRouter()
+        return { movieStore, toWatchStore, showMore, router }
     },
 
     methods: {
@@ -83,7 +85,9 @@ export default {
         },
 
         addToWatchLater(movie) {
-            this.toWatchStore.addToWatchList(movie)
+            if(this.toWatchStore.addToWatchList(movie)){
+                this.router.push('/home')
+            }
         }
     }
 
