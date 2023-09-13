@@ -37,7 +37,18 @@ export const useToWatchStore = defineStore('toWatchStore', {
             
             if(res.error){
                 console.log(res.error)
-            }  
+            }
+            
+            return true
+        },
+
+        async removeMovie(id){
+            // console.log(id)
+            let res = await axios.delete(`https://tcq8l8fps4.execute-api.us-east-1.amazonaws.com/prod/towatchlist?id=${id}`)
+
+            if(res.error) {
+                console.log(res.error)
+            }
         },
 
         async callMoviesFromDB(){

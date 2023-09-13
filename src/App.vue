@@ -1,14 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import { ref, computed } from 'vue'
-import { useToWatchStore } from './stores/ToWatchStore'
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue'
 import NavBar from './components/NavBar.vue'
 import ToWatchForm from './components/ToWatchForm.vue'
 
 const inputValue = ref('')
-const toWatchStore = useToWatchStore()
 const componentKey = ref(0)
 const router = useRouter()
 
@@ -19,7 +17,6 @@ const forceRerender = () => {
 onMounted(() =>{
     console.log('Componente montado')
     console.log(componentKey.value)
-    toWatchStore.callMoviesFromDB()
     forceRerender()
 })
 
@@ -34,6 +31,10 @@ const showNav = computed(() => {
 
     if (router.currentRoute.value.name == 'SignUp'){
         return false 
+    }
+
+    if (router.currentRoute.value.name == 'HomePage') {
+        return false
     }
 
     return true
